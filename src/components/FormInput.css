@@ -7,7 +7,7 @@ body {
     place-items: center;
     min-width: 320px;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 input, button, label {
@@ -59,3 +59,24 @@ input, button, label {
         opacity: 0;
     }
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #242424; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
