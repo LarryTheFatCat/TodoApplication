@@ -5,8 +5,16 @@ export const Form = () => {
     const [todoMessage, setTodoMessage] = useState('');
     const inputRef = useRef();
 
+    const [errorMessage, setErrorMessage] = useState(false);
+
     const handleClick = () => {
         setTodoMessage(inputRef.current.value);
+
+        if (inputRef.current.value === "") {
+            setErrorMessage(true);
+        } else {
+            setErrorMessage(false);
+        }
     }
 
     return (
@@ -26,6 +34,10 @@ export const Form = () => {
                     <button onClick={handleClick} id='button' type='button' className="btn btn-submit">
                         Submit Task
                     </button>
+                    {/* useState errorMessage if the content is valid or not, adding css for it */}
+                    {errorMessage && (
+                        <p className="error-message">Please Enter a Task That's Not Blank!</p>
+                    )}
                 </div>
                 {/*This section will just be used to render the output contents..., we use ref and useState react components */}
                 <div className="todo-output">

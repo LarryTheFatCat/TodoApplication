@@ -10,11 +10,8 @@ body {
     overflow: hidden;
 }
 
-
-.input-label {
-    cursor: pointer;
-    position: relative;
-    top: 0.25cm;
+input, button, label {
+    margin: 0.2cm;
 }
 
 .input::placeholder {
@@ -36,9 +33,25 @@ body {
     outline-width: 0.2px;
 }
 
-.input-section {
-    display: flex;
+.error-message {
+    font-family: "Poppins", sans-serif;
     position: relative;
-    left: 1.3cm;
-    gap: 20px;
+    right: 0.2cm;
+    bottom: 0.5cm;
+    color: red;
+    font-size: 10px;
+    animation: errorBlink 2000ms infinite;
+}
+
+
+@keyframes errorBlink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
