@@ -2,10 +2,9 @@ import { useState, useRef } from 'react';
 import './FormInput.css'
 
 export const Form = () => {
+    const [errorMessage, setErrorMessage] = useState(false);
     const [todoMessage, setTodoMessage] = useState('');
     const inputRef = useRef();
-
-    const [errorMessage, setErrorMessage] = useState(false);
 
     // add a new state to store the todo items
     const [todoList, setTodoList] = useState([]);
@@ -21,7 +20,10 @@ export const Form = () => {
         }
     }
 
-    // create a function where it displays
+    const deleteTodo = (index) => {
+        // update the todo list by filtering out the todo item at the specified index
+        setTodoList(todoList.filter((_, i) => i !== index));
+    }
 
     return (
         <div className="container">
@@ -47,9 +49,12 @@ export const Form = () => {
                 {/* render the list of todo items */}
                 <div className="todo-output">
                     {todoList.map((todo, index) => (
-                        <div>
-                            <p key={index} className="test">{todo}</p>
-                            <button classname="btn btn-reset">X</button>
+                        <div key={index}>
+                            <p className="test">{todo}</p>
+                            {/* add an onClick event to the delete button that calls deleteTodo with the index of the todo item */}
+                            <button onClick={() => deleteTodo(index)} classname="btn btn-reset">
+                                X
+                            </button>
                         </div>
                     ))}
                 </div>
