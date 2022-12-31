@@ -7,12 +7,16 @@ export const Form = () => {
 
     const [errorMessage, setErrorMessage] = useState(false);
 
-    const handleClick = () => {
-        setTodoMessage(inputRef.current.value);
+    // add a new state to store the todo items
+    const [todoList, setTodoList] = useState([]);
 
+    const handleClick = () => {
         if (inputRef.current.value === "") {
             setErrorMessage(true);
         } else {
+            // add the new todo item to the list and reset the input value
+            setTodoList([...todoList, inputRef.current.value]);
+            inputRef.current.value = '';
             setErrorMessage(false);
         }
     }
@@ -34,14 +38,15 @@ export const Form = () => {
                     <button onClick={handleClick} id='button' type='button' className="btn btn-submit">
                         Submit Task
                     </button>
-                    {/* useState errorMessage if the content is valid or not, adding css for it */}
                     {errorMessage && (
                         <p className="error-message">Please Enter a Task That's Not Blank!</p>
                     )}
                 </div>
-                {/*This section will just be used to render the output contents..., we use ref and useState react components */}
+                {/* render the list of todo items */}
                 <div className="todo-output">
-                    <h2 className="test">{todoMessage}</h2>
+                    {todoList.map((todo, index) => (
+                        <p key={index} className="test">{todo}</p>
+                    ))}
                 </div>
             </main>
         </div>
