@@ -21,6 +21,8 @@ export const Form = () => {
         }
     }
 
+    // create a function where it displays
+
     return (
         <div className="container">
             <main>
@@ -45,7 +47,10 @@ export const Form = () => {
                 {/* render the list of todo items */}
                 <div className="todo-output">
                     {todoList.map((todo, index) => (
-                        <p key={index} className="test">{todo}</p>
+                        <div>
+                            <p key={index} className="test">{todo}</p>
+                            <button classname="btn btn-reset">X</button>
+                        </div>
                     ))}
                 </div>
             </main>

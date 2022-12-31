@@ -43,6 +43,10 @@ input, button, label {
     animation: errorBlink 2000ms infinite;
 }
 
+.btn-reset {
+    position: relative;
+    left: 2cm;
+}
 
 @keyframes errorBlink {
     0% {
