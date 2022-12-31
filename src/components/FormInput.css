@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+}
+
+
+.input-label {
+    cursor: pointer;
+    position: relative;
+    top: 0.25cm;
+}
+
+.input::placeholder {
+    font-family: "Poppins", sansserif;
+    font-size: 15px;
+    text-indent: 0.2cm;
+    color: rgba(255, 255, 255, 0.625);
+}
+
+.input {
+    font-size: 15px;
+    font-family: inherit;
+    text-indent: 0.2cm;
+    width: 5cm;
+    border-radius: 10px;
+    border-style: hidden;
+    height: 1cm;
+    outline-style: solid;
+    outline-width: 0.2px;
+}
+
+.input-section {
+    display: flex;
+    position: relative;
+    left: 1.3cm;
+    gap: 20px;
+}
