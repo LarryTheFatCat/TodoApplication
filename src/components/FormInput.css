@@ -40,8 +40,9 @@ label {
     position: relative;
     right: 0.2cm;
     bottom: 0.5cm;
-    color: red;
-    font-size: 10px;
+    font-weight: 700;
+    color: rgb(255, 0, 0);
+    font-size: 12px;
     animation: errorBlink 2000ms infinite;
 }
 
@@ -83,4 +84,27 @@ label {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.btn-themeSwitcher {
+    position: absolute;
+    top: 0.5cm;
+    right: 0.5cm;
+    border-radius: 50px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 300ms;
+}
+
+.description-content {
+    font-size: 20px;
+}
+
+.input-label {
+    font-weight: 700;
 }
