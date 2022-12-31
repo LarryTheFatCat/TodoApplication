@@ -5,7 +5,7 @@ This is a simple todo application that allows you to create, delete and mark tas
 
 1. Clone the repository
 2. Run `npm install`
-3. Run `npm start`
+3. Run `npm run dev`
 
 ## Usage
 
