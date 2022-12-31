@@ -10,7 +10,9 @@ body {
     overflow-x: hidden;
 }
 
-input, button, label {
+input,
+button,
+label {
     margin: 0.2cm;
 }
 
@@ -52,9 +54,11 @@ input, button, label {
     0% {
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
@@ -63,20 +67,20 @@ input, button, label {
 /* width */
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #242424; 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #242424;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: #888; 
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

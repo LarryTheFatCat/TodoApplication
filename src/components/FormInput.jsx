@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef } from 'react'
 import './FormInput.css'
 
 export const Form = () => {
@@ -13,7 +13,7 @@ export const Form = () => {
         if (inputRef.current.value === "") {
             setErrorMessage(true);
         } else {
-            // add the new todo item to the list and reset the input value
+                // add the new todo item to the list and reset the input value
             setTodoList([...todoList, inputRef.current.value]);
             inputRef.current.value = '';
             setErrorMessage(false);
@@ -27,6 +27,8 @@ export const Form = () => {
 
     return (
         <div className="container">
+            <div className="theme-switcher">
+            </div>
             <main>
                 <h1 className="title-content">
                     Please enter your Task
