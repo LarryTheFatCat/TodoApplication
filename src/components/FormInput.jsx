@@ -1,9 +1,14 @@
+import { useState, useRef } from 'react';
 import './FormInput.css'
 
 export const Form = () => {
-    const submitTask = () => {
-        console.log("hi");
+    const [todoMessage, setTodoMessage] = useState('');
+    const inputRef = useRef();
+
+    const handleClick = () => {
+        setTodoMessage(inputRef.current.value);
     }
+
     return (
         <div className="container">
             <main>
@@ -17,10 +22,14 @@ export const Form = () => {
                     <label htmlFor="input" className="input-label">
                         Enter your Task
                     </label>
-                    <input id='input' type="text" className="input" placeholder='Let the dog out!' />
-                    <button onClick={submitTask} id='button' type='button' className="btn btn-submit">
+                    <input ref={inputRef} id='input' type="text" className="input" placeholder='Let the dog out!' />
+                    <button onClick={handleClick} id='button' type='button' className="btn btn-submit">
                         Submit Task
                     </button>
+                </div>
+                {/*This section will just be used to render the output contents..., we use ref and useState react components */}
+                <div className="todo-output">
+                    <h2 className="test">{todoMessage}</h2>
                 </div>
             </main>
         </div>
