@@ -37,12 +37,6 @@ export const Form = () => {
     return (
         <div className="container">
             <main>
-                <h1 className="title-content">
-                    Please Enter Your Task
-                </h1>
-                <p className="description-content">
-                    Enter your task below for it to be registered...
-                </p>
                 <div className="input-section">
                     <label htmlFor="input" className="input-label">
                         Enter your Task
