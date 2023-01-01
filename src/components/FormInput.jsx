@@ -1,13 +1,14 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './FormInput.css'
 
 export const Form = () => {
+    const storedTodoList = JSON.parse(localStorage.getItem('todoList'));
     const [errorMessage, setErrorMessage] = useState(false);
-    const [todoMessage, setTodoMessage] = useState('');
+    const [todoMessage, setTodoMessage] = useState([]);
     const inputRef = useRef();
 
     // add a new state to store the todo items
-    const [todoList, setTodoList] = useState([]);
+    const [todoList, setTodoList] = useState(storedTodoList || []);
 
     const handleClick = () => {
         if (inputRef.current.value === "") {
@@ -29,6 +30,10 @@ export const Form = () => {
         // update the todo list by filtering out the todo item at the specified index
         setTodoList(todoList.filter((_, i) => i !== index));
     }
+
+    useEffect(() => {
+        localStorage.setItem('todoList', JSON.stringify(todoList));
+    },[todoList]);
     return (
         <div className="container">
             <main>
