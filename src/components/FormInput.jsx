@@ -8,7 +8,7 @@ export const Form = () => {
 
     // add a new state to store the todo items
     const [todoList, setTodoList] = useState([]);
-
+    
     const handleClick = () => {
         if (inputRef.current.value === "") {
             setErrorMessage(true);
@@ -29,11 +29,8 @@ export const Form = () => {
         // update the todo list by filtering out the todo item at the specified index
         setTodoList(todoList.filter((_, i) => i !== index));
     }
-
     return (
         <div className="container">
-            <div className="theme-switcher">
-            </div>
             <main>
                 <h1 className="title-content">
                     Please enter your Task
