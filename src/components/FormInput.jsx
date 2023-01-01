@@ -8,13 +8,13 @@ export const Form = () => {
 
     // add a new state to store the todo items
     const [todoList, setTodoList] = useState([]);
-    
+
     const handleClick = () => {
         if (inputRef.current.value === "") {
             setErrorMessage(true);
             reloadFocus();
         } else {
-                // add the new todo item to the list and reset the input value
+            // add the new todo item to the list and reset the input value
             setTodoList([...todoList, inputRef.current.value]);
             inputRef.current.value = '';
             setErrorMessage(false);
