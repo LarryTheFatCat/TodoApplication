@@ -38,16 +38,16 @@ export const Form = () => {
         <div className="container">
             <main>
                 <h1 className="title-content">
-                    Please enter your Task
+                    Please Enter Your Task
                 </h1>
                 <p className="description-content">
-                    Enter your task below for it to be registered as a TODO...
+                    Enter your task below for it to be registered...
                 </p>
                 <div className="input-section">
                     <label htmlFor="input" className="input-label">
                         Enter your Task
                     </label>
-                    <input ref={inputRef} id='input' type="text" className="input" placeholder='Let the dog out!' />
+                    <input ref={inputRef} id='input' type="text" className="input" placeholder='Take dog out on a walk!' />
                     <button onClick={handleClick} id='button' type='button' className="btn btn-submit">
                         Submit Task
                     </button>
