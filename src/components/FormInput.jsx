@@ -61,7 +61,7 @@ export const Form = () => {
                         <div key={index}>
                             <p className="test">{todo}</p>
                             {/* add an onClick event to the delete button that calls deleteTodo with the index of the todo item */}
-                            <button onClick={() => deleteTodo(index)} classname="btn btn-reset">
+                            <button onClick={() => deleteTodo(index)} id="btn" classname="btn btn-reset">
                                 X
                             </button>
                         </div>

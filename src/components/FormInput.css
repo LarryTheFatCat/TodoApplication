@@ -46,9 +46,10 @@ label {
     animation: errorBlink 2000ms infinite;
 }
 
-.btn-reset {
+#btn {
     position: relative;
-    left: 2cm;
+    left: 4cm;
+    top: -1.52cm;
 }
 
 @keyframes errorBlink {
