@@ -41,7 +41,7 @@ label {
     right: 0.2cm;
     bottom: 0.5cm;
     font-weight: 700;
-    color: rgb(255, 0, 0);
+    color: rgb(203, 0, 0);
     font-size: 12px;
     animation: errorBlink 2000ms infinite;
 }

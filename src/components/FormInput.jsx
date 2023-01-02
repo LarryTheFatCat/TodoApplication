@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './FormInput.css'
 
 export const Form = () => {
     const storedTodoList = JSON.parse(localStorage.getItem('todoList'));
-    const [errorMessage, setErrorMessage] = useState(false);
+    let [errorMessage, setErrorMessage] = useState(false);
     const [todoMessage, setTodoMessage] = useState([]);
     const inputRef = useRef();
 
@@ -31,6 +31,7 @@ export const Form = () => {
         setTodoList(todoList.filter((_, i) => i !== index));
     }
 
+    
     useEffect(() => {
         localStorage.setItem('todoList', JSON.stringify(todoList));
     },[todoList]);
@@ -53,7 +54,7 @@ export const Form = () => {
                 <div className="todo-output">
                     {todoList.map((todo, index) => (
                         <div key={index}>
-                            <p className="test">{todo}</p>
+                            <p className="todoOutput">{todo}</p>
                             {/* add an onClick event to the delete button that calls deleteTodo with the index of the todo item */}
                             <button onClick={() => deleteTodo(index)} id="btn" classname="btn btn-reset">
                                 X
