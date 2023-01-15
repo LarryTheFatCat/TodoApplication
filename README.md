@@ -10,9 +10,8 @@ This is a simple todo application that allows you to create, delete and mark tas
 ## Usage
 
 1. Create a task
-2. Mark it as done
-3. Delete it
-
+2. Mark It Done
+Simple as That!
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
