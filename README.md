@@ -34,14 +34,14 @@ Please make sure to update tests as appropriate.
 
 TODO:
 
-- [x] Add a confirm Delete Glassmorpism box
+- [ ] Add a confirm Delete Glassmorpism box
 
-[ ] Rework design concept using Glassmorphsim and create draggable tools
+- [ ] Rework design concept using Glassmorphsim and create draggable tools
 
-[ ] Create introduction Screen with Glass-morphism and react-router transition screen
+- [ ] Create introduction Screen with Glass-morphism and react-router transition screen
 
-[ ] Responsive kanban (end)
+- [ ] Responsive kanban (end)
 
-[ ] Rework Theme Switcher Colours
+- [ ] Rework Theme Switcher Colours
 
-[ ] Switch to NextJS
+- [ ] Switch to NextJS
