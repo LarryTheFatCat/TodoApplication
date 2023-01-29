@@ -1,38 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Todo Application
 
-## Getting Started
+This is a simple todo application that allows you to create, delete and mark tasks as done. It is built using React and has a Vite base. Vite is a build tool that is faster than Webpack and has a smaller bundle size. It also has a dev server that is faster than Webpack's dev server. It is also built using JavaScript (JSX). This is a simple application that is meant to be a learning experience for me. I am using this application to learn React and Vite. I will be adding more features to this application as I learn more about React and Vite. I will also be adding more features to this README as I learn more about writing READMEs. Currently I am using the [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) README template. 
+## Installation
 
-First, run the development server:
+1. Clone the repository
+2. Run `npm install`
+3. Run `npm run dev`
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Usage
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Create a task
+2. Mark It Done
+Simple as That!
+## Contributing
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Please make sure to update tests as appropriate.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## License
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[MIT](https://choosealicense.com/licenses/apache-2.0/)
 
-## Learn More
+## Acknowledgements
 
-To learn more about Next.js, take a look at the following resources:
+- [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Author
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [LarryTheFatCat](https://www.github.com/LarryTheFatCat)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+TODO:
+
+- [ ] Add a confirm Delete Glassmorpism box
+
+- [ ] Rework design concept using Glassmorphsim and create draggable tools
+
+- [ ] Create introduction Screen with Glass-morphism and react-router transition screen
+
+- [ ] Responsive kanban (end)
+
+- [ ] Rework Theme Switcher Colours
+
+- [ ] Switch to NextJS
