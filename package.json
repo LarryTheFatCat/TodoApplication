@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@mantine/carousel": "^5.9.5",
     "@mantine/core": "^5.9.5",
     "@mantine/dates": "^5.9.5",
@@ -29,6 +31,7 @@
     "@tiptap/starter-kit": "^2.0.0-beta.209",
     "dayjs": "^1.11.7",
     "embla-carousel-react": "^7.0.5",
+    "framer-motion": "^8.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactjs-popup": "^2.0.5"
