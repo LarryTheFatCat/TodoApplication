@@ -10,12 +10,6 @@ body {
     overflow-x: hidden;
 }
 
-input,
-button,
-label {
-    margin: 0.2cm;
-}
-
 .input::placeholder {
     font-family: "Poppins", sansserif;
     font-size: 15px;
@@ -23,17 +17,6 @@ label {
     color: rgba(255, 255, 255, 0.625);
 }
 
-.input {
-    font-size: 15px;
-    font-family: inherit;
-    text-indent: 0.2cm;
-    width: 5cm;
-    border-radius: 10px;
-    border-style: hidden;
-    height: 1cm;
-    outline-style: solid;
-    outline-width: 0.2px;
-}
 
 .error-message {
     font-family: "Poppins", sans-serif;
@@ -44,12 +27,6 @@ label {
     color: rgb(203, 0, 0);
     font-size: 12px;
     animation: errorBlink 2000ms infinite;
-}
-
-#btn {
-    position: relative;
-    left: 4cm;
-    top: -1.52cm;
 }
 
 @keyframes errorBlink {
@@ -87,25 +64,14 @@ label {
     background: #555;
 }
 
-.btn-themeSwitcher {
-    position: absolute;
-    top: 0.5cm;
-    right: 0.5cm;
-    border-radius: 50px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
-    font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
-    transition: border-color 300ms;
-}
 
-.description-content {
-    font-size: 20px;
-}
-
-.input-label {
-    font-weight: 700;
+.input-card {
+    max-width: 100%;
+    height: 25vh;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }

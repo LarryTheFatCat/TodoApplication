@@ -9,7 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
+    "@chakra-ui/react": "^2.5.1",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@mantine/carousel": "^5.9.5",
     "@mantine/core": "^5.9.5",
     "@mantine/dates": "^5.9.5",
@@ -22,6 +24,7 @@
     "@mantine/prism": "^5.9.5",
     "@mantine/spotlight": "^5.9.5",
     "@mantine/tiptap": "^5.9.5",
+    "@mui/material": "^5.11.13",
     "@nextui-org/react": "^1.0.0-beta.11",
     "@tabler/icons": "^1.119.0",
     "@tiptap/extension-link": "^2.0.0-beta.209",
@@ -29,6 +32,7 @@
     "@tiptap/starter-kit": "^2.0.0-beta.209",
     "dayjs": "^1.11.7",
     "embla-carousel-react": "^7.0.5",
+    "framer-motion": "^10.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "reactjs-popup": "^2.0.5"

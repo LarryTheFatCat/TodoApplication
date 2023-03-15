@@ -1,20 +1,13 @@
-import './App.css'
-import { Form } from './components/FormInput';
-import { ThemeSwitcher } from './components/ThemeSwitcher';
+import "./App.css";
+import { Form } from "./components/FormInput";
 
 export const App = () => {
   return (
     <div>
-      <h1 className="title-content">
-        Please Enter Your Task
-      </h1>
-      <p className="description-content">
-        Enter your task below for it to be registered...
-      </p>
+      <h1 className="title-content">Enter Your Desired Task</h1>
       <Form />
-      <ThemeSwitcher />
     </div>
   );
-}
+};
 
-export default App
+export default App;
