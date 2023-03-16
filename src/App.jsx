@@ -1,10 +1,19 @@
 import "./App.css";
 import { Form } from "./components/FormInput";
+import { Text } from "@nextui-org/react";
 
 export const App = () => {
   return (
     <div>
-      <h1 className="title-content">Enter Your Desired Task</h1>
+      <Text
+      css={{
+        '@smMax': {
+          fontSize: '25px'
+        },
+      }}
+      color="white" h1>
+        Enter Your Desired Task
+      </Text>
       <Form />
     </div>
   );
