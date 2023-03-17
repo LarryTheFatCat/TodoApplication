@@ -1,4 +1,5 @@
 import { Input, Container, Button, Spacer, Row } from "@nextui-org/react";
+import { List } from "@mantine/core";
 import { useState, useRef } from "react";
 import "./FormInput.css";
 
@@ -77,9 +78,11 @@ export const Form = () => {
           <div className="wrapper-list">
             {todoMessage.map((newTodo, index) => (
               <div key={index}>
-                <ul>
-                  <li>{newTodo}</li>
-                </ul>
+                <List>
+                  <List.Item>
+                    {newTodo}
+                  </List.Item>
+                </List>
               </div>
             ))}
           </div>
