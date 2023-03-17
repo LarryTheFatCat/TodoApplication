@@ -1,5 +1,12 @@
-import { Input, Container, Button, Spacer, Row, Checkbox } from "@nextui-org/react";
-import { useState, useRef } from "react";
+import {
+  Input,
+  Container,
+  Button,
+  Spacer,
+  Row,
+  Checkbox,
+} from "@nextui-org/react";
+import { useState } from "react";
 import "./FormInput.css";
 
 export const Form = () => {
@@ -7,6 +14,7 @@ export const Form = () => {
   const [currentMessage, setCurrentMessage] = useState([]);
   // useState stores as an array instead of string @NOTE: spent 2 hours trying to fix it... map only works with (arrays!!!!)
   const [todoMessage, setTodoMessage] = useState([]);
+
   // This function acts as a keyEvent where when Enter is pressed, it prints
   // the value that is given in the Input as "onKeyPress={keyboardEventModifier}"
   const keyboardEventModifier = (e) => {
@@ -20,7 +28,6 @@ export const Form = () => {
       }
     }
   };
-
   // Sets text if you press enter, uses e.target.value to grab contents after change occurs
   const handleChange = (e) => {
     setCurrentMessage(e.target.value);
@@ -76,8 +83,8 @@ export const Form = () => {
           <div className="wrapper-list">
             {todoMessage.map((newTodo, index) => (
               <div key={index}>
-                <Checkbox lineThrough> {/* Checkbox list, it's unorthodox but I like this lol... */}
-                  {newTodo}
+                <Checkbox lineThrough>
+                  <p>{newTodo}</p>
                 </Checkbox>
               </div>
             ))}
