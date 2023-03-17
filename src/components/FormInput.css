@@ -34,7 +34,7 @@ body {
 
 
 .input-card {
-    width: 100%;
+    min-width: 100%;
     min-height: 250px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 16px;
