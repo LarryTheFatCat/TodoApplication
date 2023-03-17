@@ -1,31 +1,25 @@
-# Todo Application
+# Task Management App
 
-This is a simple todo application that allows you to create, delete and mark tasks as done. It is built using React and has a Vite base. Vite is a build tool that is faster than Webpack and has a smaller bundle size. It also has a dev server that is faster than Webpack's dev server. It is also built using JavaScript (JSX). This is a simple application that is meant to be a learning experience for me. I am using this application to learn React and Vite. I will be adding more features to this application as I learn more about React and Vite. I will also be adding more features to this README as I learn more about writing READMEs. Currently I am using the [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2) README template. 
-## Installation
+This is a simple task management application built with React and NextUI. It allows users to input tasks and keep track of them.
 
-1. Clone the repository
-2. Run `npm install`
-3. Run `npm run dev`
+## How it Works
 
-## Usage
+The application consists of two main components: `App` and `Form`. The `App` component renders a title and the `Form` component. The `Form` component includes an input field where the user can type in a task and a button to submit it. 
 
-1. Create a task
-2. Mark It Done
-Simple as That!
-## Contributing
+Once the user submits a task, the task is stored in an array using the `useState` hook. The `handleChange` function updates the `currentMessage` state with the contents of the input field as the user types. The `keyboardEventModifier` function checks for the Enter key press and updates the `todoMessage` state with the new task added. 
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+The `Form` component also renders the list of tasks added to the `todoMessage` state, with a line-through styling using the `Checkbox` component from NextUI.
 
-Please make sure to update tests as appropriate.
+## How to Use
+
+To use this application, simply clone the repository and run `npm install`, then run `npm run dev`. You can then add tasks using the input field and submit button, and they will appear on the page. 
+
+Note that tasks cannot be added if the input field is blank. If you attempt to submit a blank task, an error message will be logged to the console.
+
+## Credits
+
+This application was created by [LarryTheCat](https://www.github.com/larrythefatcat). 
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/apache-2.0/)
-
-## Acknowledgements
-
-- [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-
-## Author
-
-- [LarryTheFatCat](https://www.github.com/LarryTheFatCat)
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
