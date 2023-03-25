@@ -62,6 +62,10 @@ export const Form = () => {
                     marginRight: "-1cm",
                     width: "3cm",
                   },
+                  "@smMax" : {
+                    marginRight: "-1cm",
+                    width: "3cm",
+                  }
                 }}
               />
               <Spacer x={2} />
