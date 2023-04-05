@@ -4,7 +4,7 @@ import {
   Button,
   Spacer,
   Row,
-  Checkbox,
+  Checkbox
 } from "@nextui-org/react";
 import { useState } from "react";
 import "./FormInput.css";
@@ -20,9 +20,8 @@ export const Form = () => {
   const keyboardEventModifier = (e) => {
     if (e.key === "Enter") {
       if (e.target.value === "") {
-        console.log("stop inputting blank stuff"); // Acts as an error state
+        // blank state, do nothing.
       } else {
-        console.log(`Printed => ${e.target.value}`); // debugger
         setTodoMessage([...todoMessage, currentMessage]); // Concatenates new message to existing array
         setCurrentMessage(""); // Clears input field
       }
