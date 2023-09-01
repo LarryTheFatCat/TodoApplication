@@ -35,13 +35,11 @@ export const App = () => {
   // function to store onChange data into a state
   const handleClick = () => {
     if (currentMessage === "") {
-      console.log("Stop inputting blank stuff"); // Acts as an error state
     } else {
       setTodoMessage([...todoMessage, currentMessage]); // Concatenates new message to existing array
       setCurrentMessage(""); // Clears input field
     }
   };
-
 
   return (
     <div className="container">

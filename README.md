@@ -16,6 +16,15 @@ To use this application, simply clone the repository and run `npm install`, then
 
 Note that tasks cannot be added if the input field is blank. If you attempt to submit a blank task, an error message will be logged to the console.
 
+
+## Images of Display
+
+<img src="file/display/images/Display.png">
+<br>
+<img src="file/display/images/Display-Text.png">
+<br>
+<img src="file/display//images/Display-Clear.png">
+
 ## Credits
 
 This application was created by [LarryTheCat](https://www.github.com/larrythefatcat). 
