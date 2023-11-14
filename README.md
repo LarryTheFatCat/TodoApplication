@@ -19,11 +19,11 @@ Note that tasks cannot be added if the input field is blank. If you attempt to s
 
 ## Images of Display
 
-<img src="file/display/images/Display.png">
+<img src="File/display/images/Display.png">
 <br>
-<img src="file/display/images/Display-Text.png">
+<img src="File/display/images/Display-Text.png">
 <br>
-<img src="file/display//images/Display-Clear.png">
+<img src="File/display/images/Display-Clear.png">
 
 ## Credits
 
