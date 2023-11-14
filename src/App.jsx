@@ -12,7 +12,7 @@ import { useState } from "react";
 export const App = () => {
   // useState below stores the input that is given
   const [currentMessage, setCurrentMessage] = useState([]);
-  // useState stores as an array instead of string @NOTE: spent 2 hours trying to fix it... map only works with (arrays!!!!)
+  // useState stores as an array instead of string
   const [todoMessage, setTodoMessage] = useState([]);
 
   // This function acts as a keyEvent where when Enter is pressed, it prints
