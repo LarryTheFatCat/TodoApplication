@@ -50,7 +50,6 @@ export const App = () => {
             <Row justify="center">
               <Spacer x={-3.5} />
               <Input
-                value={currentMessage}
                 onChange={handleChange}
                 onKeyPress={keyboardEventModifier}
                 clearable
