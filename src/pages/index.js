@@ -1,118 +1,301 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+"use client"
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  Heading,
+  Input,
+  VStack,
+  Box,
+  Text,
+  Center,
+  InputGroup,
+  InputLeftAddon,
+  Flex,
+  Button,
+  InputRightElement,
+  Link,
+  FormControl,
+  FormErrorMessage
+} from "@chakra-ui/react";
+import { FaUser, FaKey } from "react-icons/fa";
+import { MdAlternateEmail } from "react-icons/md"
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const [show, setShow] = useState(false); // default value for pword input false
+  const [signUp, setSignUp] = useState(false);
+  const [inputValue, setInputValue] = useState({
+    username: "",
+    password: "",
+    email: "",
+    confirmPassword: ""
+  });
+  const [error, setError] = useState(false);
+  const usernameRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[a-zA-Z]{6,})(?=.*[!@#$%^&*(),.?":{}|<>]).*$/;
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const router = useRouter();
+
+  function handleInputChange(e) {
+    let { name, value } = e.target;
+    setInputValue({ ...inputValue, [name]: value });
+  }
+
+  function handlePasswordVisibility() {
+    setShow(!show);
+  }
+  function handleSignUpVisibility() {
+    setSignUp(!signUp);
+  }
+
+  function checkLogin() {
+    let username = localStorage.getItem("username");
+    let password = localStorage.getItem("password");
+    if(username !== inputValue.username || password !== inputValue.password) {
+      setError(true);
+    } else {
+      setError(false);
+      router.push("/Tasks")
+    }
+  }
+
+  function checkSignUp() {
+    if (!usernameRegex.test(inputValue.username)
+      || !emailRegex.test(inputValue.email)
+      || inputValue.password.length < 8
+      || inputValue.password !== inputValue.confirmPassword) {
+      setError(true);
+    } else {
+      localStorage.setItem("username", inputValue.username);
+      localStorage.setItem("email", inputValue.email);
+      localStorage.setItem("password", inputValue.password);
+      setError(false);
+      setSignUp(false);
+      // we don't need to store confirmation via localStorage, it's just to slow signup values.
+    }
+  }
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Flex minH={"100vh"} align={"center"} justify={"center"}>
+      {signUp ? <Card maxW="sm">
+        <CardHeader>
+          <Center>
+            <Heading as="h1" size="lg">Login</Heading>
+          </Center>
+          <Center>
+            <Text color="grey">Welcome to our app. Please Sign Up.</Text>
+          </Center>
+        </CardHeader>
+        <CardBody>
+          <FormControl isInvalid={error}>
+            <VStack spacing='24px'>
+              <>
+                <Box w="full">
+                  <Text>
+                    <label htmlFor="username_input">
+                      Username
+                    </label>
+                  </Text>
+                  <InputGroup>
+                    <InputLeftAddon>
+                      <FaUser />
+                    </InputLeftAddon>
+                    <Input
+                      value={inputValue.username}
+                      name="username"
+                      onChange={handleInputChange}
+                      id="username_input"
+                      placeHolder="Cool.Username123!"
+                    />
+                  </InputGroup>
+                  {error ?
+                    <FormErrorMessage>
+                      Please Enter a proper username.
+                    </FormErrorMessage>
+                    :
+                    ""
+                  }
+                </Box>
+              </>
+              <>
+                <Box w="full">
+                  <Text>
+                    <label htmlFor="email_input">
+                      Email
+                    </label>
+                  </Text>
+                  <InputGroup>
+                    <InputLeftAddon>
+                      <MdAlternateEmail />
+                    </InputLeftAddon>
+                    <Input
+                      value={inputValue.email}
+                      name="email"
+                      onChange={handleInputChange}
+                      id="email_input"
+                      placeHolder="somecool.email@email.com"
+                    />
+                  </InputGroup>
+                  {error ?
+                    <FormErrorMessage>
+                      Please enter a proper email.
+                    </FormErrorMessage>
+                    :
+                    ""
+                  }
+                </Box>
+              </>
+              <>
+                <Box w="full">
+                  <Text>
+                    <label htmlFor="password_input">
+                      Password
+                    </label>
+                  </Text>
+                  <InputGroup>
+                    <InputLeftAddon>
+                      <FaKey />
+                    </InputLeftAddon>
+                    <Input
+                      value={inputValue.password}
+                      name="password"
+                      onChange={handleInputChange}
+                      id="password_input"
+                      placeholder="CoolPassword123!"
+                      type={show ? "text" : "password"}
+                    />
+                    <InputRightElement width="4.5rem">
+                      <Button onClick={handlePasswordVisibility} h='1.72rem' size='sm'>
+                        {show ? "Hide" : "Show"}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+                  {error ?
+                    <FormErrorMessage>
+                      Please enter a proper password
+                    </FormErrorMessage>
+                    :
+                    ""
+                  }
+                </Box>
+              </>
+              <>
+                <Box w="full">
+                  <Text>
+                    <label htmlFor="confirm_pass_input">
+                      Password
+                    </label>
+                  </Text>
+                  <InputGroup>
+                    <InputLeftAddon>
+                      <FaKey />
+                    </InputLeftAddon>
+                    <Input
+                      value={inputValue.confirmPassword}
+                      name="confirmPassword"
+                      onChange={handleInputChange}
+                      id="confirm_pass_input"
+                      placeholder="******"
+                      type="password"
+                    />
+                  </InputGroup>
+                  {error ?
+                    <FormErrorMessage>
+                      Please confirm your password
+                    </FormErrorMessage>
+                    :
+                    ""
+                  }
+                </Box>
+              </>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+              <Box>
+                <Button onClick={checkSignUp} colorScheme={"blue"}>Sign Up</Button>
+              </Box>
+              <Box>
+                <Text color={"grey"}>
+                  No Account? <Link onClick={handleSignUpVisibility}> Login </Link>
+                </Text>
+              </Box>
+            </VStack>
+          </FormControl>
+        </CardBody>
+      </Card>
+        :
+        <Card maxW="sm">
+          <CardHeader>
+            <Center>
+              <Heading as="h1" size="lg">Login</Heading>
+            </Center>
+            <Center>
+              <Text color="grey">Welcome to our app. Please Login.</Text>
+            </Center>
+          </CardHeader>
+          <CardBody>
+            <VStack spacing='24px'>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+              <>
+                <Box w="full">
+                  <Text>
+                    <label htmlFor="username_input">
+                      Username
+                    </label>
+                  </Text>
+                  <InputGroup>
+                    <InputLeftAddon>
+                      <FaUser />
+                    </InputLeftAddon>
+                    <Input
+                      value={inputValue.username}
+                      name="username"
+                      onChange={handleInputChange}
+                      id="username_input"
+                      placeHolder="Cool.Username123!"
+                    />
+                  </InputGroup>
+                </Box>
+              </>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+              <>
+                <Box w="full">
+                  <Text>
+                    <label htmlFor="password_input">
+                      Password
+                    </label>
+                  </Text>
+                  <InputGroup>
+                    <InputLeftAddon>
+                      <FaKey />
+                    </InputLeftAddon>
+                    <Input
+                      value={inputValue.password}
+                      name="password"
+                      onChange={handleInputChange}
+                      id="password_input"
+                      placeholder="CoolPassword123!"
+                      type={show ? "text" : "password"}
+                    />
+                    <InputRightElement width="4.5rem">
+                      <Button onClick={handlePasswordVisibility} h='1.72rem' size='sm'>
+                        {show ? "Hide" : "Show"}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
+                </Box>
+              </>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+              <Box>
+                <Button onClick={checkLogin} colorScheme={"blue"}>Login</Button>
+              </Box>
+              <Box>
+                <Text color={"grey"}>
+                  No Account? <Link onClick={handleSignUpVisibility}> Sign Up </Link>
+                </Text>
+              </Box>
+            </VStack>
+          </CardBody>
+        </Card>}
+    </Flex >
   );
 }
