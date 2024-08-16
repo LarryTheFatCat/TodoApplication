@@ -184,7 +184,7 @@ export default function Home() {
                 <Box w="full">
                   <Text>
                     <label htmlFor="confirm_pass_input">
-                      Password
+                      Confirm Password
                     </label>
                   </Text>
                   <InputGroup>
