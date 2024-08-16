@@ -30,6 +30,7 @@ function Tasks() {
         description: "",
         priorityLevel: "",
     });
+    const [profiles, setProfiles] = useState({}); // store an empty object to later append to
 
     useEffect(() => {
         let storedUser = localStorage.getItem("username");
@@ -37,6 +38,32 @@ function Tasks() {
             setUsername(storedUser);
         }
     });
+
+    function removeText(text, wordsToRemove) {
+        let newText = text;
+        wordsToRemove.forEach((word) => {
+            newText = newText.replace(new RegExp(word, 'g'), '');
+        });
+        return newText;
+    }
+
+    useEffect(() => {
+        const profileObj = {};
+        let profileList = [];
+        const wordsToRemove = ["profileName,", "description,", "priorityLevel,"];
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            if (key.startsWith("profile_")) {
+                let value = localStorage.getItem(key);
+                profileObj[key] = removeText(value, wordsToRemove);
+                let cleanedValue = removeText(value, wordsToRemove);
+                let valuedArray = cleanedValue.split(',');
+                profileList.push({ value: valuedArray })
+            }
+        }
+        setProfiles(profileList);
+        console.log(profileList);
+    }, []);
 
     function handleTasksProfileVisibility() {
         setDisplayTasks(!displayTasks);
@@ -81,9 +108,17 @@ function Tasks() {
                         <CardBody>
                             <Center>
                                 <Stack direction={['column', 'row']}>
-                                    <box w="full">
-
-                                    </box>
+                                    <Box w="full">
+                                        {profiles.map((profileValue, index) => (
+                                            <Card mb="10px" key={index}>
+                                                <CardHeader>
+                                                    <Text as="b" fontSize="2xl">
+                                                        Profile Name: {profileValue.value[0]}
+                                                    </Text>
+                                                </CardHeader>
+                                            </Card>
+                                        ))}
+                                    </Box>
                                 </Stack>
                             </Center>
                         </CardBody>
@@ -164,7 +199,7 @@ function Tasks() {
                         </Card>
                 }
             </Flex >
-        </div>
+        </div >
     )
 }
 
