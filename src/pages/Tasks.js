@@ -19,6 +19,7 @@ import {
 import { AiFillTags } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import ThemeSwitcher from "./Components/ThemeSwitcher";
+import { useRouter } from "next/router";
 
 
 function Tasks() {
@@ -31,6 +32,7 @@ function Tasks() {
         priorityLevel: "",
     });
     const [profiles, setProfiles] = useState({}); // store an empty object to later append to
+    const router = useRouter();
 
     useEffect(() => {
         let storedUser = localStorage.getItem("username");
@@ -48,21 +50,18 @@ function Tasks() {
     }
 
     useEffect(() => {
-        const profileObj = {};
-        let profileList = [];
+        const profileList = [];
         const wordsToRemove = ["profileName,", "description,", "priorityLevel,"];
         for (let i = 0; i < localStorage.length; i++) {
             let key = localStorage.key(i);
             if (key.startsWith("profile_")) {
                 let value = localStorage.getItem(key);
-                profileObj[key] = removeText(value, wordsToRemove);
                 let cleanedValue = removeText(value, wordsToRemove);
                 let valuedArray = cleanedValue.split(',');
-                profileList.push({ value: valuedArray })
+                profileList.push({ id: key.replace("profile_", ""), value: valuedArray });
             }
         }
         setProfiles(profileList);
-        console.log(profileList);
     }, []);
 
     function handleTasksProfileVisibility() {
@@ -110,7 +109,7 @@ function Tasks() {
                                 <Stack direction={['column', 'row']}>
                                     <Box w="full">
                                         {profiles.map((profileValue, index) => (
-                                            <Card mb="10px" key={index}>
+                                            <Card onClick={() => router.push(`/profile/${profileValue.id}`)} mb="10px" key={index} >
                                                 <CardHeader>
                                                     <Text as="b" fontSize="2xl">
                                                         Profile Name: {profileValue.value[0]}
