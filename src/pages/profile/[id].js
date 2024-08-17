@@ -11,7 +11,6 @@ import {
     Center,
     Flex,
     FormControl,
-    FormHelperText,
     FormLabel,
     Heading,
     Input,
