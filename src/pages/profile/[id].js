@@ -26,7 +26,6 @@ import {
     Textarea,
     useDisclosure,
     Select,
-    ModalFooter,
     Accordion,
     AccordionItem,
     AccordionButton,
@@ -62,7 +61,6 @@ export default function TaskPage() {
             });
             profile = profile.split(", ")
             for (let i = 0; i < profile.length; i++) {
-                // newProfile.push(profile[i]);
                 setProfileInfo({
                     profileName: profile[0],
                     description: profile[1],
@@ -87,6 +85,10 @@ export default function TaskPage() {
         setTaskVisibility(true);
     }
 
+    function deleteTask(index) {
+        setTask(task.filter((_, i) => i !== index));
+    }
+    
     const priorityColors = {
         1: "red",
         2: "yellow",
@@ -170,31 +172,40 @@ export default function TaskPage() {
                         </Center>
                         {taskVisibility ?
                             <>
-                                {task.map((task, index) => (
-                                    <div key={index}>
-                                        <Accordion allowToggle pt="10px" w="full">
-                                            <AccordionItem>
-                                                <AccordionButton _expanded={{ bg: "darkGrey" }} borderRadius="10px">
-                                                    <Box as="span" flex="1" textAlign="left">
-                                                        <Heading fontSize="md">
-                                                            {task.taskTitle}
-                                                        </Heading>
-                                                    </Box>
-                                                    <AccordionIcon />
-                                                </AccordionButton>
-                                                <AccordionPanel pb="4">
-                                                    <Flex>
-                                                        {task.taskDescription}
-                                                        <Spacer />
-                                                        <Circle bg={priorityColors[task.priorityLevel]} width="30px" height="30px">
-                                                            {task.priorityLevel}
-                                                        </Circle>
-                                                    </Flex>
-                                                </AccordionPanel>
-                                            </AccordionItem>
-                                        </Accordion>
-                                    </div>
-                                ))}
+                                <div>
+                                    {task.map((task, index) => (
+                                        <div key={index}>
+                                            <Accordion allowToggle pt="10px" w="full">
+                                                <AccordionItem>
+                                                    <AccordionButton
+                                                        _expanded={{ bg: "darkGrey" }}
+                                                        borderRadius="10px"
+                                                        // onClick={() => deleteTask(index)}
+                                                    >
+                                                        <Box as="span" flex="1" textAlign="left">
+                                                            <Heading fontSize="md">
+                                                                {task.taskTitle}
+                                                            </Heading>
+                                                        </Box>
+                                                        <Button onClick={() => deleteTask(index)} size="xs">
+                                                            Delete Task
+                                                        </Button>
+                                                        <AccordionIcon />
+                                                    </AccordionButton>
+                                                    <AccordionPanel pb="4">
+                                                        <Flex>
+                                                            {task.taskDescription}
+                                                            <Spacer />
+                                                            <Circle bg={priorityColors[task.priorityLevel]} width="30px" height="30px">
+                                                                {task.priorityLevel}
+                                                            </Circle>
+                                                        </Flex>
+                                                    </AccordionPanel>
+                                                </AccordionItem>
+                                            </Accordion>
+                                        </div>
+                                    ))}
+                                </div>
                             </>
                             :
                             ""
