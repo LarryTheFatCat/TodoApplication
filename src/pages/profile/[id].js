@@ -86,9 +86,10 @@ export default function TaskPage() {
     }
 
     function deleteTask(index) {
+        // this is the coolest thing I've written
         setTask(task.filter((_, i) => i !== index));
     }
-    
+
     const priorityColors = {
         1: "red",
         2: "yellow",
@@ -180,7 +181,6 @@ export default function TaskPage() {
                                                     <AccordionButton
                                                         _expanded={{ bg: "darkGrey" }}
                                                         borderRadius="10px"
-                                                        // onClick={() => deleteTask(index)}
                                                     >
                                                         <Box as="span" flex="1" textAlign="left">
                                                             <Heading fontSize="md">
