@@ -1,6 +1,8 @@
 import { Button } from "@nextui-org/react";
+import { useRouter } from "next/router";
 
 export default function LandingHome() {
+  const router = useRouter();
   return (
     <div className="px-10">
       <div className="bg-foreground-200 rounded-2xl h-[95vh] flex flex-col items-center justify-center">
@@ -18,10 +20,10 @@ export default function LandingHome() {
           experience.
         </p>
         <div className="flex md:gap-14">
-          <Button variant="solid" color="primary" size="lg">
+          <Button onClick={() => router.push("/register")} variant="solid" color="primary" size="lg">
             Sign Up
           </Button>
-          <Button variant="bordered" color="secondary" size="lg">
+          <Button onClick={() => router.push("/Login")} variant="bordered" color="secondary" size="lg">
             Login
           </Button>
         </div>

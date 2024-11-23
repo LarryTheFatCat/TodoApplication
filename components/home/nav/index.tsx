@@ -10,18 +10,14 @@ import {
   NavbarMenuToggle,
   Tooltip,
 } from "@nextui-org/react";
-import { div } from "framer-motion/client";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const LandingNav: React.FC = () => {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   // navbar mobile menu items
-  const menuItems: Array<String> = [
-    "Home",
-    "About",
-    "Testimonials",
-    "Contact",
-  ];
+  const menuItems: Array<String> = ["Home", "About", "Testimonials", "Contact"];
   const menuID: Array<String> = [];
   menuItems.forEach((item: String) => {
     menuID.push(item.toLowerCase());
@@ -67,12 +63,12 @@ const LandingNav: React.FC = () => {
       </NavbarContent>
       <NavbarContent className="hidden md:flex" justify="end">
         <NavbarItem>
-          <Button variant="solid" color="primary">
+          <Button onClick={() => router.push("/register")} variant="solid" color="primary">
             Sign up
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button variant="bordered" color="secondary">
+          <Button onClick={() => router.push("/login")} variant="bordered" color="secondary">
             Login
           </Button>
         </NavbarItem>
@@ -87,12 +83,14 @@ const LandingNav: React.FC = () => {
           </>
         ))}
         <NavbarMenuItem>
-          <Button variant="solid" color="primary">
-            Sign up
-          </Button>
+          <Link href="/register">
+            <Button variant="solid" color="primary">
+              Sign up
+            </Button>
+          </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Button variant="bordered" color="secondary">
+          <Button onClick={() => router.push("/login")} variant="bordered" color="secondary">
             Login
           </Button>
         </NavbarMenuItem>
