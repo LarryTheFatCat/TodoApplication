@@ -10,9 +10,7 @@ import {
   RegisterInputData,
 } from "@/types/Types";
 import { db } from "@/utils/firebase";
-import {
-  doCreateUserWithEmailAndPassword,
-} from "@/utils/Methods";
+import { doCreateUserWithEmailAndPassword } from "@/utils/Methods";
 import {
   Button,
   Card,
@@ -89,6 +87,7 @@ const RegisterForm: React.FC = () => {
         registerData.password.length > 7 &&
         registerData.password === registerData.confirmPassword
       ) {
+        console.log(registerData.birthday);
         let user = await doCreateUserWithEmailAndPassword(
           registerData.email,
           registerData.password
@@ -96,9 +95,11 @@ const RegisterForm: React.FC = () => {
         let uid = user.user.uid;
         console.log(typeof registerData.birthday);
         const birthday = registerData.birthday
-          ? registerData.birthday.day +
-            registerData.birthday.month +
-            registerData.birthday.year
+          ? String(registerData.birthday.day) +
+            "/" +
+            String(registerData.birthday.month) +
+            "/" +
+            String(registerData.birthday.year)
           : undefined;
         await setDoc(doc(db, "users", uid), {
           email: registerData.email,
