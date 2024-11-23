@@ -19,7 +19,6 @@ const LandingNav: React.FC = () => {
   const menuItems: Array<String> = [
     "Home",
     "About",
-    "Features",
     "Testimonials",
     "Contact",
   ];
@@ -53,11 +52,6 @@ const LandingNav: React.FC = () => {
         <NavbarItem className="cursor-pointer">
           <Link color="foreground" href="#about">
             <p>About</p>
-          </Link>
-        </NavbarItem>
-        <NavbarItem className="cursor-pointer">
-          <Link color="foreground" href="#features">
-            <p>Features</p>
           </Link>
         </NavbarItem>
         <NavbarItem className="cursor-pointer">

@@ -2,8 +2,8 @@ import { Button } from "@nextui-org/react";
 
 export default function LandingHome() {
   return (
-    <>
-      <div className="bg-foreground-100 h-[95vh] flex flex-col items-center justify-center">
+    <div className="px-10">
+      <div className="bg-foreground-200 rounded-2xl h-[95vh] flex flex-col items-center justify-center">
         <h1 className="text-5xl text-center font-extrabold text-blue-500">
           Streamline Your Day,{" "}
           <span className="text-black">One Task at a Time.</span>
@@ -17,7 +17,7 @@ export default function LandingHome() {
           {/* */} more by turning your to-dos into actionable steps, all in one seamless
           experience.
         </p>
-        <div className="flex gap-14">
+        <div className="flex md:gap-14">
           <Button variant="solid" color="primary" size="lg">
             Sign Up
           </Button>
@@ -26,6 +26,6 @@ export default function LandingHome() {
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

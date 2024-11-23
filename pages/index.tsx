@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import LandingNav from "@/components/home/nav";
 import LandingHome from "@/components/home/home";
 import LandingAbout from "@/components/home/about";
+import LandingTestimonials from "@/components/home/testimonials";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = useState<Boolean>(false);
@@ -30,6 +31,9 @@ export default function Home() {
         </div>
         <div id="about">
           <LandingAbout />
+        </div>
+        <div id="testimonials">
+          <LandingTestimonials />
         </div>
       </motion.div>
     </>
