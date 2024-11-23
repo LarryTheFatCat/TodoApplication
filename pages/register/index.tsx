@@ -7,6 +7,7 @@ import RocketIcon from "@/public/RocketIcon";
 import {
   DisplayPasswordState,
   ErrorManagement,
+  ErrorManagementDescription,
   RegisterInputData,
 } from "@/types/Types";
 import { db } from "@/utils/firebase";
@@ -50,6 +51,16 @@ const RegisterForm: React.FC = () => {
     confirmPasswordError: false,
     birthdayError: false,
   });
+  const [displayErrorMessage, setDisplayErrorMessage] =
+    useState<ErrorManagementDescription>({
+      fullNameErrorDescription: "Please enter your first and last name only.",
+      emailErrorDescription: "Please enter a valid email.",
+      passwordErrorDescription:
+        "Please enter a password that is greater than 7 characters.",
+      confirmPasswordErrorDescription: "Passwords do not match.",
+      birthdayErrorDescription: "Please enter a valid birthday.",
+    });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const toggleVisibility = (key: keyof DisplayPasswordState) =>
     setDisplayPassword((prevState) => ({
@@ -70,7 +81,6 @@ const RegisterForm: React.FC = () => {
       [field]: value,
     }));
   };
-
   const validateEmail = (value: string) =>
     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
 
@@ -87,6 +97,7 @@ const RegisterForm: React.FC = () => {
         registerData.password.length > 7 &&
         registerData.password === registerData.confirmPassword
       ) {
+        setIsLoading(true);
         console.log(registerData.birthday);
         let user = await doCreateUserWithEmailAndPassword(
           registerData.email,
@@ -109,11 +120,27 @@ const RegisterForm: React.FC = () => {
           birthday: birthday,
           gender: registerData.gender,
         });
-
+        setDisplayError({
+          fullNameError: false,
+          emailError: false,
+          passwordError: false,
+          confirmPasswordError: false,
+          birthdayError: false,
+        });
         router.push("/home");
+      } else {
+        setDisplayError({
+          fullNameError: true,
+          emailError: true,
+          passwordError: true,
+          confirmPasswordError: true,
+          birthdayError: true,
+        });
+        setIsLoading(false);
       }
     } catch (e: any) {
       alert(e);
+      setIsLoading(false);
     }
   };
   /**
@@ -157,14 +184,25 @@ const RegisterForm: React.FC = () => {
               isInvalid={displayError.fullNameError}
               validationState={displayError.fullNameError ? "invalid" : "valid"}
               value={registerData.fullName}
+              errorMessage={
+                displayError.fullNameError
+                  ? displayErrorMessage.fullNameErrorDescription
+                  : ""
+              }
               onChange={(e) => {
                 handleInputChange("fullName", e.target.value);
-                setErrorField(
-                  "fullNameError",
-                  !validateFullName(e.target.value)
-                );
+                const isInvalid = !validateFullName(e.target.value);
+                setErrorField("fullNameError", isInvalid);
+                if (isInvalid) {
+                  setDisplayErrorMessage((prev) => ({
+                    ...prev,
+                    fullNameErrorDescription:
+                      "Invalid full name. Please ensure it is first and last name only.",
+                  }));
+                }
               }}
             />
+
             <Input
               placeholder="johndoe@email.com"
               label="Enter your email"
@@ -176,12 +214,26 @@ const RegisterForm: React.FC = () => {
               isClearable
               isInvalid={displayError.emailError}
               validationState={displayError.emailError ? "invalid" : "valid"}
+              errorMessage={
+                displayError.emailError
+                  ? displayErrorMessage.emailErrorDescription
+                  : ""
+              }
               value={registerData.email}
               onChange={(e) => {
                 handleInputChange("email", e.target.value);
-                setErrorField("emailError", !validateEmail(e.target.value));
+                const isInvalid = !validateEmail(e.target.value);
+                setErrorField("emailError", isInvalid);
+                if (isInvalid) {
+                  setDisplayErrorMessage((prev) => ({
+                    ...prev,
+                    emailErrorDescription:
+                      "Please enter a valid email address.",
+                  }));
+                }
               }}
             />
+
             <Input
               placeholder="*****"
               label="Enter your password"
@@ -205,15 +257,26 @@ const RegisterForm: React.FC = () => {
               isRequired
               isInvalid={displayError.passwordError}
               validationState={displayError.passwordError ? "invalid" : "valid"}
+              errorMessage={
+                displayError.passwordError
+                  ? displayErrorMessage.passwordErrorDescription
+                  : ""
+              }
               value={registerData.password}
               onChange={(e) => {
                 handleInputChange("password", e.target.value);
-                setErrorField(
-                  "passwordError",
-                  !validatePassword(e.target.value)
-                );
+                const isInvalid = !validatePassword(e.target.value);
+                setErrorField("passwordError", isInvalid);
+                if (isInvalid) {
+                  setDisplayErrorMessage((prev) => ({
+                    ...prev,
+                    passwordErrorDescription:
+                      "Password must be at least 8 characters long.",
+                  }));
+                }
               }}
             />
+
             <Input
               placeholder="*****"
               label="Confirm your password"
@@ -239,24 +302,47 @@ const RegisterForm: React.FC = () => {
               validationState={
                 displayError.confirmPasswordError ? "invalid" : "valid"
               }
+              errorMessage={
+                displayError.confirmPasswordError
+                  ? displayErrorMessage.confirmPasswordErrorDescription
+                  : ""
+              }
               value={registerData.confirmPassword}
               onChange={(e) => {
                 handleInputChange("confirmPassword", e.target.value);
-                setErrorField(
-                  "confirmPasswordError",
-                  e.target.value !== registerData.password
-                );
+                const isInvalid = e.target.value !== registerData.password;
+                setErrorField("confirmPasswordError", isInvalid);
+                if (isInvalid) {
+                  setDisplayErrorMessage((prev) => ({
+                    ...prev,
+                    confirmPasswordErrorDescription: "Passwords do not match.",
+                  }));
+                }
               }}
             />
+
             <DatePicker
               value={registerData.birthday}
               isInvalid={displayError.birthdayError}
               validationState={displayError.birthdayError ? "invalid" : "valid"}
+              errorMessage={
+                displayError.birthdayError
+                  ? displayErrorMessage.birthdayErrorDescription
+                  : ""
+              }
               onChange={(date) => {
                 handleInputChange("birthday", date);
-                setErrorField("birthdayError", !date);
+                const isInvalid = !date;
+                setErrorField("birthdayError", isInvalid);
+                if (isInvalid) {
+                  setDisplayErrorMessage((prev) => ({
+                    ...prev,
+                    birthdayErrorDescription: "Please select a valid birthday.",
+                  }));
+                }
               }}
             />
+
             <Dropdown showArrow>
               <DropdownTrigger>
                 <Button variant="bordered">
@@ -283,6 +369,7 @@ const RegisterForm: React.FC = () => {
               type="button"
               variant="solid"
               color="primary"
+              isLoading={isLoading}
             >
               Register
             </Button>

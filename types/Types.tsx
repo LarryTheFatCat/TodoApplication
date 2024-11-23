@@ -20,3 +20,10 @@ export type ErrorManagement = {
   confirmPasswordError: boolean,
   birthdayError: boolean,
 }
+export type ErrorManagementDescription = {
+  fullNameErrorDescription: string,
+  emailErrorDescription: string,
+  passwordErrorDescription: string,
+  confirmPasswordErrorDescription: string,
+  birthdayErrorDescription: string
+}
