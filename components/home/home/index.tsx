@@ -8,9 +8,9 @@ export default function LandingHome() {
           Streamline Your Day,{" "}
           <span className="text-black">One Task at a Time.</span>
         </h1>
-        <p className="text-xl mt-4 text-center w-1/3">
+        <p className="text-xl mt-4 text-center md:w-1/3">
           TaskFlow is a simple yet powerful task management app designed to help
-          you{""}
+          you {""}
           <em className="underline font-semibold">
             organize, prioritize, and achieve
           </em>

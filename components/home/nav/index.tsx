@@ -5,12 +5,34 @@ import {
   NavbarBrand,
   NavbarContent,
   NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
   Tooltip,
 } from "@nextui-org/react";
+import { div } from "framer-motion/client";
+import React, { useState } from "react";
 
-export default function LandingNav() {
+const LandingNav: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  // navbar mobile menu items
+  const menuItems: Array<String> = [
+    "Home",
+    "About",
+    "Features",
+    "Testimonials",
+    "Contact",
+  ];
+  const menuID: Array<String> = [];
+  menuItems.forEach((item: String) => {
+    menuID.push(item.toLowerCase());
+  });
   return (
-    <Navbar>
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <NavbarMenuToggle
+        aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+        className="md:hidden"
+      />
       <NavbarBrand>
         <Tooltip showArrow content="Where Simple Tasks Turn into Achievements.">
           <Button
@@ -49,7 +71,7 @@ export default function LandingNav() {
           </Link>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
+      <NavbarContent className="hidden md:flex" justify="end">
         <NavbarItem>
           <Button variant="solid" color="primary">
             Sign up
@@ -61,6 +83,27 @@ export default function LandingNav() {
           </Button>
         </NavbarItem>
       </NavbarContent>
+      {/** Mobile Menu */}
+      <NavbarMenu>
+        {menuItems.map((item: String, index: number) => (
+          <>
+            <NavbarMenuItem key={index}>
+              <Link href={`#${menuID[index]}`}>{item}</Link>
+            </NavbarMenuItem>
+          </>
+        ))}
+        <NavbarMenuItem>
+          <Button variant="solid" color="primary">
+            Sign up
+          </Button>
+        </NavbarMenuItem>
+        <NavbarMenuItem>
+          <Button variant="bordered" color="secondary">
+            Login
+          </Button>
+        </NavbarMenuItem>
+      </NavbarMenu>
     </Navbar>
   );
-}
+};
+export default LandingNav;
