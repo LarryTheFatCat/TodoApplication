@@ -24,7 +24,9 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.75 }}
       >
-        <LandingHome />
+        <div id="home">
+          <LandingHome />
+        </div>
       </motion.div>
     </>
   );
