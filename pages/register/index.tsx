@@ -9,6 +9,10 @@ import {
   ErrorManagement,
   RegisterInputData,
 } from "@/types/Types";
+import { db } from "@/utils/firebase";
+import {
+  doCreateUserWithEmailAndPassword,
+} from "@/utils/Methods";
 import {
   Button,
   Card,
@@ -24,6 +28,7 @@ import {
   Link,
   Tooltip,
 } from "@nextui-org/react";
+import { doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -75,6 +80,50 @@ const RegisterForm: React.FC = () => {
     /^[A-Za-z]+ [A-Za-z]+$/.test(value);
 
   const validatePassword = (value: string): boolean => value.length >= 7;
+
+  const registerUser = async () => {
+    try {
+      if (
+        validateEmail(registerData.email) &&
+        validateFullName(registerData.fullName) &&
+        registerData.password.length > 7 &&
+        registerData.password === registerData.confirmPassword
+      ) {
+        let user = await doCreateUserWithEmailAndPassword(
+          registerData.email,
+          registerData.password
+        );
+        let uid = user.user.uid;
+        console.log(typeof registerData.birthday);
+        const birthday = registerData.birthday
+          ? registerData.birthday.day +
+            registerData.birthday.month +
+            registerData.birthday.year
+          : undefined;
+        await setDoc(doc(db, "users", uid), {
+          email: registerData.email,
+          fullname: registerData.fullName,
+          username: registerData.fullName.replace(" ", ""),
+          password: registerData.password,
+          birthday: birthday,
+          gender: registerData.gender,
+        });
+
+        router.push("/home");
+      }
+    } catch (e: any) {
+      alert(e);
+    }
+  };
+  /**
+   * converts text to PascalCase
+   * @param string
+   * @returns PascalCase text
+   */
+  const toPascalCase = (string: string): string =>
+    (string.match(/[a-zA-Z0-9]+/g) || [])
+      .map((word: string) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+      .join("");
 
   return (
     <div className="h-screen flex items-center justify-center">
@@ -209,7 +258,11 @@ const RegisterForm: React.FC = () => {
             />
             <Dropdown showArrow>
               <DropdownTrigger>
-                <Button variant="bordered">Select Gender</Button>
+                <Button variant="bordered">
+                  {registerData.gender
+                    ? toPascalCase(String(registerData.gender))
+                    : "Select Gender"}
+                </Button>
               </DropdownTrigger>
               <DropdownMenu
                 aria-label="Genders"
@@ -224,7 +277,12 @@ const RegisterForm: React.FC = () => {
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
-            <Button type="button" variant="solid" color="primary">
+            <Button
+              onClick={registerUser}
+              type="button"
+              variant="solid"
+              color="primary"
+            >
               Register
             </Button>
           </CardBody>
