@@ -8,15 +8,26 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 
-export default function LandingPage() {
+export default function LandingNav() {
   return (
-    <Navbar position="sticky">
+    <Navbar>
       <NavbarBrand>
         <Tooltip showArrow content="Where Simple Tasks Turn into Achievements.">
-          <Button variant="light">Dolt</Button>
+          <Button
+            variant="light"
+            className="font-extrabold text-xl text-blue-500"
+          >
+            Task
+            <span className="text-black ml-[-8px]">Flow</span>
+          </Button>
         </Tooltip>
       </NavbarBrand>
       <NavbarContent className="hidden md:flex" justify="center">
+        <NavbarItem className="cursor-pointer">
+          <Link color="foreground" href="#home">
+            <p>Home</p>
+          </Link>
+        </NavbarItem>
         <NavbarItem className="cursor-pointer">
           <Link color="foreground" href="#about">
             <p>About</p>
@@ -45,7 +56,7 @@ export default function LandingPage() {
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button variant="bordered" color="primary">
+          <Button variant="bordered" color="secondary">
             Login
           </Button>
         </NavbarItem>
