@@ -116,7 +116,6 @@ const RegisterForm: React.FC = () => {
           email: registerData.email,
           fullname: registerData.fullName,
           username: registerData.fullName.replace(" ", ""),
-          password: registerData.password,
           birthday: birthday,
           gender: registerData.gender,
         });
