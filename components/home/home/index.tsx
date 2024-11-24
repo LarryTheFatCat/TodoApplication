@@ -23,7 +23,7 @@ export default function LandingHome() {
           <Button onClick={() => router.push("/register")} variant="solid" color="primary" size="lg">
             Sign Up
           </Button>
-          <Button onClick={() => router.push("/Login")} variant="bordered" color="secondary" size="lg">
+          <Button onClick={() => router.push("/login")} variant="bordered" color="secondary" size="lg">
             Login
           </Button>
         </div>

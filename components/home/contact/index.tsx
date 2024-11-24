@@ -1,6 +1,11 @@
 import GitHubIcon from "@/public/GitHubIcon";
-import React from "react";
+import React, { useEffect, useState } from "react";
 const LandingContact: React.FC = () => {
+  const [year, setYear] = useState<string>("");
+  useEffect(() => {
+    let date = new Date();
+    setYear(String(date.getFullYear()));
+  },[])
   return (
     <>
       <footer className="bg-[#11182E] text-gray-300 mt-10">
@@ -12,8 +17,7 @@ const LandingContact: React.FC = () => {
           <p>Privacy Policy</p>
         </div>
         <div className="flex justify-center pt-3 gap-5">
-          <GitHubIcon />
-          <p>Wish to contact? Click the icon.</p>
+          <p className="text-gray-500">©️ {year} LarryTheFatCat</p>
         </div>
       </footer>
     </>

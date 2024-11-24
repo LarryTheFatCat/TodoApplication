@@ -90,10 +90,12 @@ const LoginForm: React.FC = () => {
 
   const loginUser = async () => {
     try {
-      if (!validateInputs()) setDisplayErrorState({
-        email: true,
-        password: true
-      });
+      if (!validateInputs()) {
+        setDisplayErrorState({
+          email: true,
+          password: true,
+        });
+      }
       setIsLoading(true);
       await doSignInWithEmailAndPassword(
         userInformation.email,
@@ -102,7 +104,6 @@ const LoginForm: React.FC = () => {
       setIsLoading(false);
       router.push("/home");
     } catch (e: any) {
-      alert("An error occurred during login. Please try again.");
       setIsLoading(false);
     }
   };
