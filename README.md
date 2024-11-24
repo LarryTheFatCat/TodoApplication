@@ -1,68 +1,40 @@
-# ToDo App with Profile System
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Overview
+## Getting Started
 
-This ToDo App allows users to create and manage tasks with a profile system. Each task is associated with a profile and includes a priority level rating and a description. The app is built using React and leverages local storage to persist data across sessions.
+First, run the development server:
 
-## Features
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-- **Profile Management**: Create and manage profiles for different tasks.
-- **Task Management**: Add, view, and delete tasks.
-- **Priority Levels**: Assign priority levels to tasks (1: High, 2: Medium, 3: Low).
-- **Task Descriptions**: Add detailed descriptions to tasks.
-- **Persistent Storage**: Tasks and profiles are saved in local storage.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Installation
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/todo-app.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd todo-app
-    ```
-3. Install dependencies:
-    ```bash
-    npm install
-    ```
-4. Start the development server:
-    ```bash
-    npm start
-    ```
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-## Usage
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-1. **Create a Profile**:
-    - Enter the profile name, description, and priority level.
-    - Save the profile to local storage.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-2. **Add a Task**:
-    - Enter the task title, description, and priority level.
-    - Click the "Add Task" button to save the task.
+## Learn More
 
-3. **View Tasks**:
-    - Tasks are displayed in an accordion format.
-    - Click on a task to view its details.
+To learn more about Next.js, take a look at the following resources:
 
-4. **Delete a Task**:
-    - Click the "Delete Task" button to remove a task.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Code Structure
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-- **`App.js`**: Main component that renders the profile and task management components.
-- **`Profile.js`**: Component for creating and managing profiles.
-- **`Task.js`**: Component for creating, viewing, and deleting tasks.
+## Deploy on Vercel
 
-## Contributing
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Open a pull request.
-
-## Contact
-
-For any questions or feedback, please make an issue in this GitHub repository.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
