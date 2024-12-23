@@ -41,3 +41,9 @@ export type LoginErrorManagementDescription = {
   emailErrorDescription: string,
   passwordErrorDescription: string,
 }
+export type UserData = {
+  fullName?: string,
+  email?: string,
+  birthday?: CalendarDate | null,
+  gender?: string, // optional 
+}

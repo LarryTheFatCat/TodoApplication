@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import LandingNav from "@/components/home/nav";
-import LandingHome from "@/components/home/home";
-import LandingAbout from "@/components/home/about";
-import LandingTestimonials from "@/components/home/testimonials";
-import LandingContact from "@/components/home/contact";
+import LandingNav from "@/components/homepage/nav";
+import LandingHome from "@/components/homepage/home";
+import LandingAbout from "@/components/homepage/about";
+import LandingTestimonials from "@/components/homepage/testimonials";
+import LandingContact from "@/components/homepage/contact";
 
 export default function Home() {
   const [hasMounted, setHasMounted] = useState<Boolean>(false);

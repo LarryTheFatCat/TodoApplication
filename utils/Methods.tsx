@@ -2,10 +2,10 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
+  signOut,
   UserCredential,
 } from "firebase/auth";
 import { auth } from "@/utils/firebase";
-
 export const doSignInWithEmailAndPassword = async (
   email: string,
   password: string
@@ -18,6 +18,11 @@ export const doCreateUserWithEmailAndPassword = async (
 ): Promise<UserCredential> => {
   return createUserWithEmailAndPassword(auth, email, password);
 };
-export const doSendPasswordResetEmail = async (email:string): Promise<void>  => {
-  return sendPasswordResetEmail(auth,email);
-}
+export const doSendPasswordResetEmail = async (
+  email: string
+): Promise<void> => {
+  return sendPasswordResetEmail(auth, email);
+};
+export const doSignOut = async (): Promise<void> => {
+  return signOut(auth);
+};
