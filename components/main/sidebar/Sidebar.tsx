@@ -131,7 +131,11 @@ const Sidebar: React.FC = () => {
             </div>
           </CardHeader>
           <CardBody>
-            <Tooltip showArrow content="See where all your tasks lie!">
+            <Tooltip
+              placement="right-end"
+              showArrow
+              content="See where all your tasks lie!"
+            >
               <Button
                 className="w-full flex items-center justify-between"
                 variant="light"
@@ -140,7 +144,11 @@ const Sidebar: React.FC = () => {
                 <p className="text-white mt-1 font-semibold mr-2">Home</p>
               </Button>
             </Tooltip>
-            <Tooltip showArrow content="Focus on tasks that need attention!">
+            <Tooltip
+              placement="right-end"
+              showArrow
+              content="Focus on tasks that need attention!"
+            >
               <Button
                 className="w-full flex items-center justify-between"
                 variant="light"
@@ -151,7 +159,11 @@ const Sidebar: React.FC = () => {
                 </p>
               </Button>
             </Tooltip>
-            <Tooltip showArrow content="Track your accomplished tasks!">
+            <Tooltip
+              placement="right-end"
+              showArrow
+              content="Track your accomplished tasks!"
+            >
               <Button
                 className="w-full flex items-center justify-between"
                 variant="light"
@@ -162,7 +174,11 @@ const Sidebar: React.FC = () => {
                 </p>
               </Button>
             </Tooltip>
-            <Tooltip showArrow content="Find your prioritized tasks">
+            <Tooltip
+              showArrow
+              placement="right-end"
+              content="Find your prioritized tasks"
+            >
               <Button
                 className="w-full flex items-center justify-between"
                 variant="light"
@@ -174,7 +190,6 @@ const Sidebar: React.FC = () => {
               </Button>
             </Tooltip>
           </CardBody>
-
           <CardFooter className="text-white text-center">
             <p>hello</p>
           </CardFooter>
