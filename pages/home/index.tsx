@@ -1,4 +1,4 @@
-import Sidebar from "@/components/main/sidebar/Sidebar";
+import Sidebar from "../../components/main/sidebar/Sidebar";
 import React from "react";
 
 const HomePage: React.FC = () => {

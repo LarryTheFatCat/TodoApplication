@@ -8,15 +8,15 @@ import {
   Input,
   Link,
 } from "@nextui-org/react";
-import RocketIcon from "@/public/RocketIcon";
-import PasswordClosedIcon from "@/public/input/PasswordClosedIcon";
-import PasswordOpenIcon from "@/public/input/PasswordOpenIcon";
+import RocketIcon from "../../public/RocketIcon";
+import PasswordClosedIcon from "../../public/input/PasswordClosedIcon";
+import PasswordOpenIcon from "../../public/input/PasswordOpenIcon";
 import {
   LoginErrorManagement,
   LoginErrorManagementDescription,
   LoginInformation,
-} from "@/types/Types";
-import { doSignInWithEmailAndPassword } from "@/utils/Methods";
+} from "../../types/Types";
+import { doSignInWithEmailAndPassword } from "../../utils/Methods";
 import { useRouter } from "next/router";
 
 const LoginForm: React.FC = () => {

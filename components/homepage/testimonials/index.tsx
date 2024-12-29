@@ -1,4 +1,3 @@
-import MoonIcon from "@/public/MoonIcon";
 import { Card, CardBody, CardHeader, Divider, User } from "@nextui-org/react";
 import React from "react";
 const LandingTestimonials: React.FC = () => {

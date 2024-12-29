@@ -1,5 +1,5 @@
-import RocketIcon from "@/public/RocketIcon";
-import { doSendPasswordResetEmail } from "@/utils/Methods";
+import RocketIcon from "../../public/RocketIcon";
+import { doSendPasswordResetEmail } from "../../utils/Methods";
 import {
   Button,
   Card,

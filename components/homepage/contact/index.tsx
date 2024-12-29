@@ -1,4 +1,3 @@
-import GitHubIcon from "@/public/GitHubIcon";
 import React, { useEffect, useState } from "react";
 const LandingContact: React.FC = () => {
   const [year, setYear] = useState<string>("");

@@ -1,11 +1,11 @@
-import CompletedIcon from "@/public/sidebar/CompletedIcon";
-import HomeIcon from "@/public/sidebar/HomeIcon";
-import PendingIcon from "@/public/sidebar/PendingIcon";
-import PriorityIcon from "@/public/sidebar/PriorityIcon";
-import VerticalThreeDots from "@/public/ThreeDotsVertical";
-import { UserData } from "@/types/Types";
-import { auth, db } from "@/utils/firebase";
-import { doSignOut } from "@/utils/Methods";
+import CompletedIcon from "../../../public/sidebar/CompletedIcon";
+import HomeIcon from "../../../public/sidebar/HomeIcon";
+import PendingIcon from "../../../public/sidebar/PendingIcon";
+import PriorityIcon from "../../../public/sidebar/PriorityIcon";
+import VerticalThreeDots from "../../../public/ThreeDotsVertical";
+import { UserData } from "../../../types/Types";
+import { auth, db } from "../../../utils/Firebase";
+import { doSignOut } from "../../../utils/Methods";
 import {
   Button,
   ButtonGroup,

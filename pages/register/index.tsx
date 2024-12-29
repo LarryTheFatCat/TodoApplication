@@ -1,17 +1,17 @@
-import MailIcon from "@/public/input/MailIcon";
-import NameIcon from "@/public/input/NameIcon";
-import PasswordClosedIcon from "@/public/input/PasswordClosedIcon";
-import PasswordIcon from "@/public/input/PasswordIcon";
-import PasswordOpenIcon from "@/public/input/PasswordOpenIcon";
-import RocketIcon from "@/public/RocketIcon";
+import MailIcon from "../../public/input/MailIcon";
+import NameIcon from "../../public/input/NameIcon";
+import PasswordClosedIcon from "../../public/input/PasswordClosedIcon";
+import PasswordIcon from "../../public/input/PasswordIcon";
+import PasswordOpenIcon from "../../public/input/PasswordOpenIcon";
+import RocketIcon from "../../public/RocketIcon";
 import {
   DisplayPasswordState,
   ErrorManagement,
   ErrorManagementDescription,
   RegisterInputData,
-} from "@/types/Types";
-import { db } from "@/utils/firebase";
-import { doCreateUserWithEmailAndPassword } from "@/utils/Methods";
+} from "../../types/Types";
+import { db } from "../../utils/Firebase";
+import { doCreateUserWithEmailAndPassword } from "../../utils/Methods";
 import {
   Button,
   Card,

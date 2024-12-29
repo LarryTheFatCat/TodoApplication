@@ -5,7 +5,7 @@ import {
   signOut,
   UserCredential,
 } from "firebase/auth";
-import { auth } from "@/utils/firebase";
+import { auth } from "./Firebase";
 export const doSignInWithEmailAndPassword = async (
   email: string,
   password: string
