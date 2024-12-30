@@ -121,7 +121,7 @@ const Sidebar: React.FC = () => {
                             router.push("/");
                           }}
                         >
-                          Let me sign out!
+                          Let me out!
                         </Button>
                       </ModalFooter>
                     </>
