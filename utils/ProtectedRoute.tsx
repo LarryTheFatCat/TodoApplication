@@ -1,6 +1,7 @@
 import { Spinner } from "@nextui-org/react";
 import { useAuth } from "./CentralAuth";
 import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -18,6 +19,7 @@ const ProtectedRoute = ({ children }) => {
   if (!user) {
     return router.push("/login");
   }
+  
 
   return children;
 };

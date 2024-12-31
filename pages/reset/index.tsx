@@ -37,6 +37,7 @@ const ResetPage: React.FC = () => {
   };
   return (
     <>
+    
       <div className="h-screen flex items-center justify-center">
         <Card className="flex flex-row p-0 w-1/2 mx-auto">
           <div className="flex-1 p-5 border-r border-gray-300 bg-blue-500 pt-[12%]">

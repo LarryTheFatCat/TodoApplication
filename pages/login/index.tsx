@@ -134,6 +134,7 @@ const LoginForm: React.FC = () => {
               <div>
                 <Input
                   type="text"
+                  onKeyDown={(e) => { if (e.key === "Enter") loginUser(); }}
                   variant="faded"
                   label="Email"
                   labelPlacement="outside"
@@ -156,6 +157,7 @@ const LoginForm: React.FC = () => {
               <div>
                 <Input
                   type={displayPassword ? "text" : "password"}
+                  onKeyDown={(e) => { if (e.key === "Enter") loginUser(); }}
                   variant="faded"
                   label="Password"
                   labelPlacement="outside"
