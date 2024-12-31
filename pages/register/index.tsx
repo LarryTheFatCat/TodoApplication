@@ -1,8 +1,8 @@
-import MailIcon from "../../public/input/MailIcon";
-import NameIcon from "../../public/input/NameIcon";
-import PasswordClosedIcon from "../../public/input/PasswordClosedIcon";
-import PasswordIcon from "../../public/input/PasswordIcon";
-import PasswordOpenIcon from "../../public/input/PasswordOpenIcon";
+import MailIcon from "../../public/MailIcon";
+import NameIcon from "../../public/NameIcon";
+import PasswordClosedIcon from "../../public/PasswordClosedIcon";
+import PasswordIcon from "../../public/PasswordIcon";
+import PasswordOpenIcon from "../../public/PasswordOpenIcon";
 import RocketIcon from "../../public/RocketIcon";
 import {
   DisplayPasswordState,

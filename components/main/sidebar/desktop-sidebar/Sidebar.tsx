@@ -1,11 +1,11 @@
-import CompletedIcon from "../../../public/sidebar/CompletedIcon";
-import HomeIcon from "../../../public/sidebar/HomeIcon";
-import PendingIcon from "../../../public/sidebar/PendingIcon";
-import PriorityIcon from "../../../public/sidebar/PriorityIcon";
-import VerticalThreeDots from "../../../public/ThreeDotsVertical";
-import { UserData } from "../../../types/Types";
-import { auth, db } from "../../../utils/Firebase";
-import { doSignOut } from "../../../utils/Methods";
+import CompletedIcon from "../../../../public/CompletedIcon";
+import HomeIcon from "../../../../public/HomeIcon";
+import PendingIcon from "../../../../public/PendingIcon";
+import PriorityIcon from "../../../../public/PriorityIcon";
+import VerticalThreeDots from "../../../../public/ThreeDotsVertical";
+import { UserData } from "../../../../types/Types";
+import { auth, db } from "../../../../utils/Firebase";
+import { doSignOut } from "../../../../utils/Methods";
 import {
   Button,
   ButtonGroup,
@@ -28,7 +28,11 @@ import {
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import MobileSideBar from "../mobile-sidebar/Sidebar";
 
+/**
+ * TODO: Remove this entire section
+ */
 const Sidebar: React.FC = () => {
   const router = useRouter();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -65,7 +69,7 @@ const Sidebar: React.FC = () => {
   }, []);
   return (
     <>
-      <Card className="w-10/12 bg-[#2E2E48] rounded-l-none rounded-sm h-screen">
+      <Card className="w-10/12 bg-[#2E2E48] rounded-l-none rounded-sm h-screen hidden min-[1054px]:block">
         <div className="grid grid-rows-[auto_1fr_auto] h-full">
           <CardHeader className="grid grid-cols-2">
             <div className="grid col-span-1">
@@ -73,7 +77,7 @@ const Sidebar: React.FC = () => {
                 <User name={userData.fullName} description={userData.email} />
               </h2>
             </div>
-            <div className="grid col-span-1 w-full justify-end">
+            <div className="hidden col-span-1 w-full justify-end xl:flex">
               <Popover placement="right" showArrow={true}>
                 <PopoverTrigger>
                   <Button variant="flat" isIconOnly>
@@ -131,70 +135,81 @@ const Sidebar: React.FC = () => {
             </div>
           </CardHeader>
           <CardBody>
-            <Tooltip
-              placement="right-end"
-              showArrow
-              content="See where all your tasks lie!"
-            >
-              <Button
-                className="w-full flex items-center justify-between"
-                variant="light"
+            <div id="sidebar_home_div">
+              <Tooltip
+                placement="right-end"
+                showArrow
+                content="See where all your tasks lie!"
               >
-                <HomeIcon />
-                <p className="text-white mt-1 font-semibold mr-2">Home</p>
-              </Button>
-            </Tooltip>
-            <Tooltip
-              placement="right-end"
-              showArrow
-              content="Focus on tasks that need attention!"
-            >
-              <Button
-                className="w-full flex items-center justify-between"
-                variant="light"
+                <Button
+                  className="w-full flex items-center justify-between"
+                  variant="light"
+                >
+                  <HomeIcon />
+                  <p className="text-white mt-1 font-semibold mr-2 block">
+                    Home
+                  </p>
+                </Button>
+              </Tooltip>
+            </div>
+            <div id="sidebar_pending_div">
+              <Tooltip
+                placement="right-end"
+                showArrow
+                content="Focus on tasks that need attention!"
               >
-                <PendingIcon />
-                <p className="text-white mt-1 font-semibold mr-2">
-                  Pending Tasks
-                </p>
-              </Button>
-            </Tooltip>
-            <Tooltip
-              placement="right-end"
-              showArrow
-              content="Track your accomplished tasks!"
-            >
-              <Button
-                className="w-full flex items-center justify-between"
-                variant="light"
+                <Button
+                  className="w-full flex items-center justify-between"
+                  variant="light"
+                >
+                  <PendingIcon />
+                  <p className="text-white mt-1 font-semibold mr-2">
+                    Pending Tasks
+                  </p>
+                </Button>
+              </Tooltip>
+            </div>
+            <div id="sidebar_completed_div">
+              <Tooltip
+                placement="right-end"
+                showArrow
+                content="Track your accomplished tasks!"
               >
-                <CompletedIcon />
-                <p className="text-white mt-1 font-semibold mr-2">
-                  Completed Tasks
-                </p>
-              </Button>
-            </Tooltip>
-            <Tooltip
-              showArrow
-              placement="right-end"
-              content="Find your prioritized tasks"
-            >
-              <Button
-                className="w-full flex items-center justify-between"
-                variant="light"
+                <Button
+                  className="w-full flex items-center justify-between"
+                  variant="light"
+                >
+                  <CompletedIcon />
+                  <p className="text-white mt-1 font-semibold mr-2">
+                    Completed Tasks
+                  </p>
+                </Button>
+              </Tooltip>
+            </div>
+            <div id="sidebar_important_div">
+              <Tooltip
+                showArrow
+                placement="right-end"
+                content="Find your prioritized tasks"
               >
-                <PriorityIcon />
-                <p className="text-white mt-1 font-semibold mr-2">
-                  Important Tasks
-                </p>
-              </Button>
-            </Tooltip>
+                <Button
+                  className="w-full flex items-center justify-between"
+                  variant="light"
+                >
+                  <PriorityIcon />
+                  <p className="text-white mt-1 font-semibold mr-2">
+                    Important Tasks
+                  </p>
+                </Button>
+              </Tooltip>
+            </div>
           </CardBody>
           <CardFooter className="text-white text-center">
             <p>hello</p>
           </CardFooter>
         </div>
       </Card>
+      <MobileSideBar />
     </>
   );
 };

@@ -13,7 +13,8 @@ const ProtectedRoute = ({ children }) => {
       </div>
     );
   }
-
+  // if no current user exists at this current moment (meaning that they signed out)
+  // then we just redirect back to login...
   if (!user) {
     return router.push("/login");
   }

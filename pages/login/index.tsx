@@ -9,8 +9,8 @@ import {
   Link,
 } from "@nextui-org/react";
 import RocketIcon from "../../public/RocketIcon";
-import PasswordClosedIcon from "../../public/input/PasswordClosedIcon";
-import PasswordOpenIcon from "../../public/input/PasswordOpenIcon";
+import PasswordClosedIcon from "../../public/PasswordClosedIcon";
+import PasswordOpenIcon from "../../public/PasswordOpenIcon";
 import {
   LoginErrorManagement,
   LoginErrorManagementDescription,

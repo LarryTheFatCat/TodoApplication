@@ -1,4 +1,4 @@
-import Sidebar from "../../components/main/sidebar/Sidebar";
+import Sidebar from "../../components/main/sidebar/desktop-sidebar/Sidebar";
 import React from "react";
 import ProtectedRoute from "../../utils/ProtectedRoute";
 

@@ -1,7 +1,7 @@
 import React from "react";
 const HomeIcon: React.FC = (props: any) => {
   return (
-    <svg className="ml-2" {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className="ml-2 hidden lg:flex" {...props} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
