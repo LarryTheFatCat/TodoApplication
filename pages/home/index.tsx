@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from "react";
 import ProtectedRoute from "../../utils/ProtectedRoute";
 import { auth, db } from "../../utils/Firebase";
-import { addDoc, collection, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+} from "firebase/firestore";
 import {
   Button,
   Card,
+  CardBody,
   CardHeader,
+  Checkbox,
   Chip,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
   Input,
+  Tooltip,
 } from "@nextui-org/react";
 import AllTaskIcon from "../../public/AllTaskIcon"; // Ensure correct import
 import ActiveTaskIcon from "../../public/ActiveTaskIcon";
 import { CheckIcon } from "../../public/CheckIcon";
-import { TaskState } from "../../types/Types";
+import { TaskList, TaskState } from "../../types/Types";
 import { useRouter } from "next/router";
 
 const HomePage: React.FC = () => {
@@ -28,7 +38,32 @@ const HomePage: React.FC = () => {
     priority: "",
   });
   const [errorState, setErrorState] = useState<boolean>(false);
-  const [loadingState, setLoadingState] = useState<boolean>(false);
+  const [loadingState, setLoadingState] = useState<boolean>(false);
+  const [tasks, setTasks] = useState<TaskList[]>([]);
+  const [checked, setChecked] = useState<boolean>(false);
+  const [checkedTasks, setCheckedTasks] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+
+  const handleCheckboxChange = async (taskId: string) => {
+    setCheckedTasks((prev) => ({
+      ...prev,
+      [taskId]: !prev[taskId],
+    }));
+    setTimeout(async () => {
+      setCheckedTasks((prev) => ({
+        ...prev,
+        [taskId]: true,
+      }));
+      // Update the completed field in the Firebase database
+      const user = auth.currentUser;
+      if (user) {
+        const uid = user.uid;
+        const taskRef = doc(db, "users", uid, "tasks", taskId);
+        await setDoc(taskRef, { completed: true }, { merge: true });
+      }
+    }, 500); // 0.5 seconds delay
+  };
 
   useEffect(() => {
     // get name from firebase db
@@ -52,6 +87,7 @@ const HomePage: React.FC = () => {
       setPriorityState("Set Priority");
     }
     fetchUserData();
+    getTasks();
   }, []);
 
   const addTask = async () => {
@@ -90,7 +126,32 @@ const HomePage: React.FC = () => {
       setLoadingState(false);
     }
   };
-
+  const getTasks = async () => {
+    try {
+      const user = auth.currentUser;
+      if (user) {
+        const uid = user.uid;
+        // get the collection reference
+        const collectionReference = collection(db, "users", uid, "tasks");
+        // get the documents from the collection
+        const querySnapshot = await getDocs(collectionReference);
+        // log the data to the console
+        let tasks: TaskList[] = [];
+        querySnapshot.forEach((doc) => {
+          const data = doc.data() as TaskList;
+          if (!data.completed) {
+            // Filter out completed tasks
+            tasks.push({ ...data, id: doc.id });
+          }
+        });
+        setTasks(tasks);
+        // window.location.reload();
+        console.log(tasks);
+      }
+    } catch (e) {
+      alert(e);
+    }
+  };
   return (
     <>
       <ProtectedRoute>
@@ -120,7 +181,7 @@ const HomePage: React.FC = () => {
                 base: "border-small border-blue-700 shadow-md shadow-blue-500",
                 content: "drop-shadow shadow-black text-white",
               }}
-              startContent={<AllTaskIcon />} 
+              startContent={<AllTaskIcon />}
             >
               <span className="font-semibold">All Tasks</span>
             </Chip>
@@ -167,12 +228,19 @@ const HomePage: React.FC = () => {
               <div className="grid grid-cols-2">
                 <Dropdown>
                   <DropdownTrigger>
-                    <Button  variant="bordered" color={
-                      task.task === "" ? "secondary" :
-                      task.priority === "High" ? "danger" :
-                      task.priority === "Medium" ? "warning" : "success"
-                    }>
-                        {task.priority || "Set Priority"}
+                    <Button
+                      variant="bordered"
+                      color={
+                        task.task === ""
+                          ? "secondary"
+                          : task.priority === "High"
+                          ? "danger"
+                          : task.priority === "Medium"
+                          ? "warning"
+                          : "success"
+                      }
+                    >
+                      {task.priority || "Set Priority"}
                     </Button>
                   </DropdownTrigger>
                   <DropdownMenu
@@ -181,16 +249,72 @@ const HomePage: React.FC = () => {
                       setTask({ ...task, priority: key as string })
                     }
                   >
-                    <DropdownItem color="danger" key="High">High</DropdownItem>
-                    <DropdownItem color="warning" key="Medium">Medium</DropdownItem>
-                    <DropdownItem color="success" key="Low">Low</DropdownItem>
+                    <DropdownItem color="danger" key="High">
+                      High
+                    </DropdownItem>
+                    <DropdownItem color="warning" key="Medium">
+                      Medium
+                    </DropdownItem>
+                    <DropdownItem color="success" key="Low">
+                      Low
+                    </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
-                <Button isLoading={loadingState} onPress={addTask} color="primary" variant="solid">
+                <Button
+                  isLoading={loadingState}
+                  onPress={addTask}
+                  color="primary"
+                  variant="solid"
+                >
                   Add Task
                 </Button>
               </div>
             </CardHeader>
+            <CardBody>
+              {tasks.map(
+                (task) =>
+                  !checkedTasks[task.id] && (
+                    <div
+                      key={task.id}
+                      className="flex flex-row justify-between p-2 border-b border-gray-300"
+                      onClick={() => console.log(task.id)}
+                    >
+                      <p className="text-lg font-semibold">{task.task}</p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="grid col-span-1">
+                          <Checkbox
+                            isSelected={checkedTasks[task.id]}
+                            onChange={() => handleCheckboxChange(task.id)}
+                          />
+                        </div>
+                        <div className="grid col-span-1">
+                          <Tooltip
+                            content={task.priority}
+                            showArrow
+                            color={
+                              task.priority == "High"
+                                ? "danger"
+                                : task.priority == "Medium"
+                                ? "warning"
+                                : "success"
+                            }
+                          >
+                            <div
+                              className={`w-3 h-3 self-center ${
+                                task.priority == "High"
+                                  ? "bg-red-500"
+                                  : task.priority == "Medium"
+                                  ? "bg-orange-500"
+                                  : "bg-green-500"
+                              }  rounded-full`}
+                            ></div>
+                          </Tooltip>
+                        </div>
+                      </div>
+                    </div>
+                  )
+              )}
+            </CardBody>
           </Card>
         </div>
       </ProtectedRoute>

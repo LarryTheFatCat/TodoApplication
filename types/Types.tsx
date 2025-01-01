@@ -51,3 +51,9 @@ export type TaskState = {
   task?: string,
   priority?: string,
 }
+export type TaskList = {
+  id: string,
+  completed: boolean,
+  priority: string,
+  task: string,
+}
