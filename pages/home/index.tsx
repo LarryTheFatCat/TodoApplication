@@ -70,6 +70,7 @@ const HomePage: React.FC = () => {
           await addDoc(collectionRef, {
             task: task.task,
             priority: task.priority,
+            completed: false,
           });
           setLoadingState(false);
         } else {
@@ -167,10 +168,11 @@ const HomePage: React.FC = () => {
                 <Dropdown>
                   <DropdownTrigger>
                     <Button  variant="bordered" color={
+                      task.task === "" ? "secondary" :
                       task.priority === "High" ? "danger" :
                       task.priority === "Medium" ? "warning" : "success"
                     }>
-                      {task.priority}
+                        {task.priority || "Set Priority"}
                     </Button>
                   </DropdownTrigger>
                   <DropdownMenu
