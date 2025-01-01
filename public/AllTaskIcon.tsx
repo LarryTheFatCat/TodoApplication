@@ -1,0 +1,121 @@
+import React from "react";
+import { AllTaskIconProps } from "../interfaces/Interfaces";
+
+const AllTaskIcon: React.FC<AllTaskIconProps> = ({
+  size,
+  height,
+  width,
+  ...props
+}) => {
+  return (
+    <svg
+      className="ml-2"
+      {...props}
+      height={18}
+      width={18}
+      viewBox="0 0 64 64"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={2}
+        x1={25}
+        y1={24}
+        x2={47}
+        y2={24}
+      />
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={10}
+        x1={25}
+        y1={34}
+        x2={47}
+        y2={34}
+      />
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={10}
+        x1={25}
+        y1={44}
+        x2={47}
+        y2={44}
+      />
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={10}
+        x1={25}
+        y1={54}
+        x2={47}
+        y2={54}
+      />
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={10}
+        x1={21}
+        y1={24}
+        x2={17}
+        y2={24}
+      />
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={10}
+        x1={21}
+        y1={34}
+        x2={17}
+        y2={34}
+      />
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={10}
+        x1={21}
+        y1={44}
+        x2={17}
+        y2={44}
+      />
+      <line
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={5}
+        strokeMiterlimit={10}
+        x1={21}
+        y1={54}
+        x2={17}
+        y2={54}
+      />
+      <polyline
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={3}
+        strokeMiterlimit={10}
+        strokeLinecap="round"
+        strokeLinejoin="round" 
+        points="24,8 10,8 10,63 54,63 54,8 41,8 "
+      />
+      <polygon
+        fill="none"
+        stroke="lightblue"
+        strokeWidth={3}
+        strokeMiterlimit={10}
+        points="36,5 36,1 28,1 28,5 24,5 22,13 42,13 40,5 
+  "
+      />
+    </svg>
+  );
+};
+
+export default AllTaskIcon;
