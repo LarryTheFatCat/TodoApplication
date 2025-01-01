@@ -3,7 +3,10 @@ import { useAuth } from "./CentralAuth";
 import { useRouter } from "next/router";
 import { useParams } from "next/navigation";
 
-const ProtectedRoute = ({ children }) => {
+import { ReactNode } from "react";
+// children --> represents the actual htmx code that's used
+// React.ReactNode --> set's the type of the component to a react element
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const { user, loading } = useAuth();
   const router = useRouter();
 

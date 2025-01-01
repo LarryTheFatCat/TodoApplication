@@ -47,3 +47,7 @@ export type UserData = {
   birthday?: CalendarDate | null,
   gender?: string, // optional 
 }
+export type TaskState = {
+  task?: string,
+  priority?: string,
+}

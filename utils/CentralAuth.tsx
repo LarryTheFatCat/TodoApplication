@@ -30,11 +30,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if(router.pathname === "/reset" || router.pathname === "/register") {
       return;
     }
-    // whilst there's no current active user / no logged user (null), return back to login page
-    if (auth.currentUser === null) {
-      router.push("/");
-      return;
-    }
+      // // whilst there's no current active user / no logged user (null), return back to login page
+      // if (auth.currentUser === null) {
+      //   router.push("/");
+      //   return;
+      // }
     // listener for any changes in the user's authentication state
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
